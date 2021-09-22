@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const { request } = require('express');
 
 module.exports = {
     register: async (req, res) => {
@@ -16,5 +15,10 @@ module.exports = {
         const user = registeredUser[0];
         req.session.user = { isAdmin: user.is_admin, id: user.id, username: user.username };
         return res.status(201).send(req.session.user);
+    },
+    login: async (req, res) => {
+        const { username, password } = req.body;
+        const db = req.app.get('db');
+        
     }
 };
