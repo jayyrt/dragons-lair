@@ -22,13 +22,14 @@ app.use(
  
 massive({
     connectionString: CONNECTION_STRING,
-    ssl: { rejectunauthorized: false }
-}).then( db => {
+    ssl: { rejectUnauthorized: false }
+}).then(db => {
     app.set('db', db);
     console.log('db connected');
 });
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
+app.get('/auth/logout', authCtrl.logout);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
